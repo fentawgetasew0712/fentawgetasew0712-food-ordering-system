@@ -5,9 +5,11 @@ import validator from "validator"
 
 // login user
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body; // identifier can be email or username
     try {
-        const user = await userModel.findOne({ email });
+        const user = await userModel.findOne({
+            $or: [{ email: identifier }, { username: identifier }]
+        });
 
         if (!user) {
             return res.json({ success: false, message: "User doesn't exist" })
@@ -34,12 +36,17 @@ const createToken = (id) => {
 
 // register user
 const registerUser = async (req, res) => {
-    const { name, password, email } = req.body;
+    const { username, firstName, lastName, email, password, phone, address } = req.body;
     try {
-        // checking is user already exists
-        const exists = await userModel.findOne({ email });
-        if (exists) {
-            return res.json({ success: false, message: "User already exists" })
+        // checking if user already exists
+        const emailExists = await userModel.findOne({ email });
+        if (emailExists) {
+            return res.json({ success: false, message: "Email already exists" })
+        }
+
+        const usernameExists = await userModel.findOne({ username });
+        if (usernameExists) {
+            return res.json({ success: false, message: "Username already exists" })
         }
 
         // validating email format & strong password
@@ -56,9 +63,13 @@ const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser = new userModel({
-            name: name,
-            email: email,
-            password: hashedPassword
+            username,
+            firstName,
+            lastName,
+            email,
+            password: hashedPassword,
+            phone,
+            address
         })
 
         const user = await newUser.save()
