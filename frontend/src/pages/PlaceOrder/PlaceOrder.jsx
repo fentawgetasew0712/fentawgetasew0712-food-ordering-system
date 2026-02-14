@@ -70,7 +70,7 @@ const PlaceOrder = () => {
                             <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
                         </div>
                     </div>
-                    <button type='submit' className='border-none text-white bg-primary w-[max(15vw,200px)] py-3 rounded-md cursor-pointer hover:bg-[#e54420] transition-all font-medium mt-8'>PROCEED TO PAYMENT</button>
+                    <button type='submit' className='border-none text-white bg-primary w-[max(15vw,200px)] py-3 rounded-md cursor-pointer hover:bg-[#e54420] transition-all hover:scale-105 active:scale-95 font-medium mt-8'>PROCEED TO PAYMENT</button>
                 </div>
             </div>
         </form>

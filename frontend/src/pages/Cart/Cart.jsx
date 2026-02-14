@@ -54,7 +54,7 @@ const Cart = () => {
                             <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
                         </div>
                     </div>
-                    <button onClick={() => navigate('/order')} className='border-none text-white bg-primary w-[max(15vw,200px)] py-3 rounded-md cursor-pointer hover:bg-[#e54420] transition-all font-medium'>PROCEED TO CHECKOUT</button>
+                    <button onClick={() => navigate('/order')} className='border-none text-white bg-primary w-[max(15vw,200px)] py-3 rounded-md cursor-pointer hover:bg-[#e54420] transition-all hover:scale-105 active:scale-95 font-medium'>PROCEED TO CHECKOUT</button>
                 </div>
                 <div className='flex-1'>
                     <div className='flex flex-col gap-2.5'>

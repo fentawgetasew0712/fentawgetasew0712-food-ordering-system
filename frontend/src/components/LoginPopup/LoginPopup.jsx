@@ -56,7 +56,7 @@ const LoginPopup = ({ setShowLogin }) => {
                     <input name='email' onChange={onChangeHandler} value={data.email} className='border border-border-light p-2.5 rounded-md outline-primary' type="email" placeholder='Your email' required />
                     <input name='password' onChange={onChangeHandler} value={data.password} className='border border-border-light p-2.5 rounded-md outline-primary' type="password" placeholder='Password' required />
                 </div>
-                <button type='submit' className='border-none p-2.5 rounded-md text-white bg-primary text-base cursor-pointer hover:bg-[#e54420] transition-all font-medium'>{currState === "Sign Up" ? "Create account" : "Login"}</button>
+                <button type='submit' className='border-none p-2.5 rounded-md text-white bg-primary text-base cursor-pointer hover:bg-[#e54420] transition-all hover:scale-[1.02] active:scale-[0.98] font-medium'>{currState === "Sign Up" ? "Create account" : "Login"}</button>
                 <div className='flex items-start gap-2 -mt-4'>
                     <input className='mt-1 accent-primary' type="checkbox" required />
                     <p className='text-[12px]'>By continuing, I agree to the terms of use & privacy policy.</p>
