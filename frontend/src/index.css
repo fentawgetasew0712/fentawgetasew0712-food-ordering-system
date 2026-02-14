@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #ff4c24;
+  --secondary: #2d2d2d;
+}
+
+@theme {
+  --font-outfit: "Outfit", sans-serif;
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+}
+
+body {
+  font-family: var(--font-outfit);
+  color: var(--secondary);
+}
+
+/* Animations for the header */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 2s;
+}
