@@ -6,6 +6,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({});
+    const [search, setSearch] = useState("");
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -80,6 +81,7 @@ const StoreContextProvider = (props) => {
             address: deliveryData,
             items: orderItems,
             amount: getTotalCartAmount() + 2,
+            paymentMethod: deliveryData.paymentMethod || "COD"
         }
         let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
         if (response.data.success) {
@@ -115,7 +117,9 @@ const StoreContextProvider = (props) => {
         token,
         setToken,
         placeOrder,
-        url
+        url,
+        search,
+        setSearch
     };
 
     return (

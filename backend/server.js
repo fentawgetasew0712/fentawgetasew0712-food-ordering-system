@@ -1,6 +1,5 @@
 import express from "express"
 import cors from "cors"
-import { connectDB } from "./config/db.js"
 import 'dotenv/config'
 
 import foodRouter from "./routes/foodRoute.js"
@@ -17,7 +16,19 @@ app.use(express.json())
 app.use(cors())
 
 // db connection
-connectDB();
+import sequelize from "./config/db.js"
+import { connectDB } from "./config/db.js"
+import userModel from "./models/userModel.js"
+import foodModel from "./models/foodModel.js"
+import orderModel from "./models/orderModel.js"
+
+const initDB = async () => {
+    await connectDB();
+    await sequelize.sync(); // This creates tables if they don't exist
+    console.log("All models were synchronized successfully.");
+}
+
+initDB();
 
 // api endpoints
 app.use("/api/food", foodRouter)

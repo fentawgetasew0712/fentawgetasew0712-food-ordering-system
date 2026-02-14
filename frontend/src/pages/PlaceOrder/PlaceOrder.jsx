@@ -16,7 +16,8 @@ const PlaceOrder = () => {
         state: "",
         zipcode: "",
         country: "",
-        phone: ""
+        phone: "",
+        paymentMethod: "COD"
     });
 
     const onChangeHandler = (event) => {
@@ -70,7 +71,22 @@ const PlaceOrder = () => {
                             <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
                         </div>
                     </div>
-                    <button type='submit' className='border-none text-white bg-primary w-[max(15vw,200px)] py-3 rounded-md cursor-pointer hover:bg-[#e54420] transition-all hover:scale-105 active:scale-95 font-medium mt-8'>PROCEED TO PAYMENT</button>
+                    <div className='flex flex-col gap-4 mt-8'>
+                        <h2 className='text-xl font-bold text-text-dark'>Select Payment Method</h2>
+                        <div className='flex flex-col gap-3'>
+                            <label className='flex items-center gap-3 p-3 border border-border-light rounded-md cursor-pointer hover:bg-gray-50 transition-all'>
+                                <input type="radio" name="paymentMethod" value="COD" checked={data.paymentMethod === "COD"} onChange={onChangeHandler} required className='accent-primary w-4 h-4' />
+                                <span className='text-text-main font-medium'>Cash on Delivery (COD)</span>
+                            </label>
+                            <label className='flex items-center gap-3 p-3 border border-border-light rounded-md cursor-pointer hover:bg-gray-50 transition-all'>
+                                <input type="radio" name="paymentMethod" value="PayPal" checked={data.paymentMethod === "PayPal"} onChange={onChangeHandler} required className='accent-primary w-4 h-4' />
+                                <span className='text-text-main font-medium'>Online Payment (PayPal Simulation)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type='submit' className='border-none text-white bg-primary w-[max(15vw,200px)] py-3 rounded-md cursor-pointer hover:bg-[#e54420] transition-all hover:scale-105 active:scale-95 font-medium mt-8 uppercase tracking-wider'>
+                        {data.paymentMethod === "COD" ? "Place Order" : "Proceed to Payment"}
+                    </button>
                 </div>
             </div>
         </form>

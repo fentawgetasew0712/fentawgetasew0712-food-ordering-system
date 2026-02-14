@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/db.js";
 
-const orderSchema = new mongoose.Schema({
-    userId: { type: String, required: true },
-    items: { type: Array, required: true },
-    amount: { type: Number, required: true },
-    address: { type: Object, required: true },
-    status: { type: String, default: "Food Processing" },
-    date: { type: Date, default: Date.now() },
-    payment: { type: Boolean, default: false }
-})
-
-const orderModel = mongoose.models.order || mongoose.model("order", orderSchema);
+const orderModel = sequelize.define("order", {
+    userId: { type: DataTypes.STRING, allowNull: false },
+    items: { type: DataTypes.JSON, allowNull: false },
+    amount: { type: DataTypes.INTEGER, allowNull: false },
+    address: { type: DataTypes.JSON, allowNull: false },
+    status: { type: DataTypes.STRING, defaultValue: "Food Processing" },
+    date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    payment: { type: DataTypes.BOOLEAN, defaultValue: false },
+    paymentMethod: { type: DataTypes.STRING, defaultValue: "COD" }
+});
 
 export default orderModel;

@@ -58,7 +58,8 @@ const LoginPopup = ({ setShowLogin }) => {
             }
         } catch (error) {
             console.error("Auth error:", error);
-            alert("An error occurred during authentication.");
+            const msg = error.response?.data?.message || "An error occurred during authentication. Check if the backend is running.";
+            alert(msg);
         }
     }
 

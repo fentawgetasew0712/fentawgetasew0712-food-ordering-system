@@ -1,5 +1,25 @@
-import mongoose from "mongoose";
+import { Sequelize } from "sequelize";
+import 'dotenv/config'
+
+const sequelize = new Sequelize(
+    process.env.MYSQL_DB,
+    process.env.MYSQL_USER,
+    process.env.MYSQL_PASSWORD,
+    {
+        host: process.env.MYSQL_HOST,
+        dialect: 'mysql',
+        logging: false
+    }
+);
 
 export const connectDB = async () => {
-    await mongoose.connect('mongodb+srv://user:password@cluster.mongodb.net/food-del').then(() => console.log("DB Connected"));
+    try {
+        await sequelize.authenticate();
+        console.log("MySQL DB Connected via Sequelize");
+        // We will sync models here later or in models themselves
+    } catch (error) {
+        console.error("Unable to connect to MySQL:", error);
+    }
 }
+
+export default sequelize;

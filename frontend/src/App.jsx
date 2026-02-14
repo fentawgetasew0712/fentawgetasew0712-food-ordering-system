@@ -6,17 +6,20 @@ import Cart from './pages/Cart/Cart'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
+import ProfilePopup from './components/ProfilePopup/ProfilePopup'
 import MyOrders from './pages/MyOrders/MyOrders'
 
 const App = () => {
 
   const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   return (
     <>
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+      {showProfile ? <ProfilePopup setShowProfile={setShowProfile} /> : <></>}
       <div className='w-4/5 m-auto'>
-        <Navbar setShowLogin={setShowLogin} />
+        <Navbar setShowLogin={setShowLogin} setShowProfile={setShowProfile} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
