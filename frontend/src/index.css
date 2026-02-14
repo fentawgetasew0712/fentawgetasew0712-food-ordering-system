@@ -2,18 +2,24 @@
 
 :root {
   --primary: #ff4c24;
-  --secondary: #2d2d2d;
+  --text-main: #49557e;
+  --text-dark: #262626;
+  --bg-dark: #323232;
+  --border-light: #e2e2e2;
 }
 
 @theme {
   --font-outfit: "Outfit", sans-serif;
   --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
+  --color-text-main: var(--text-main);
+  --color-text-dark: var(--text-dark);
+  --color-bg-dark: var(--bg-dark);
 }
 
 body {
   font-family: var(--font-outfit);
-  color: var(--secondary);
+  color: var(--text-main);
+  background-color: #ffffff;
 }
 
 /* Animations for the header */
